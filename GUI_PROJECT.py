@@ -7,7 +7,7 @@ from PyQt5.QtGui import QFont
 import math
 import matplotlib
 
-matplotlib.use("qt5agg")
+matplotlib.use("Qt5Agg")
 import matplotlib.pyplot as plt
 
 
@@ -60,17 +60,17 @@ class Window(QMainWindow):
 
     def initUI(self):
         font = QFont("Helvetica", 15)
-        self.Time = QLabel(self, text="t0:")
+        self.Time = QLabel(self, text="t:")
         self.Time.setGeometry(220, 20, 100, 25)
         self.Time.setStyleSheet("color: white")
         self.Time.setFont(font)
 
-        self.X = QLabel(self, text="x0:")
+        self.X = QLabel(self, text="x:")
         self.X.setGeometry(220, 60, 100, 25)
         self.X.setStyleSheet("color: white")
         self.X.setFont(font)
 
-        self.Y = QLabel(self, text="y0:")
+        self.Y = QLabel(self, text="y:")
         self.Y.setGeometry(220, 100, 100, 25)
         self.Y.setStyleSheet("color: white")
         self.Y.setFont(font)
@@ -100,45 +100,45 @@ class Window(QMainWindow):
         self.W.setStyleSheet("color: white")
         self.W.setFont(font)
 
-        self.F = QLabel(self, text="F:")
+        self.F = QLabel(self, text="f:")
         self.F.setGeometry(220, 340, 100, 25)
         self.F.setStyleSheet("color: white")
         self.F.setFont(font)
 
         self.initTimeInput = QLineEdit(self)
-        self.initTimeInput.setGeometry(QtCore.QRect(250, 20, 40, 25))
+        self.initTimeInput.setGeometry(QtCore.QRect(250, 20, 80, 25))
         self.initTimeInput.setStyleSheet("color: skyblue")
 
         self.initXInput = QLineEdit(self)
-        self.initXInput.setGeometry(QtCore.QRect(250, 60, 40, 25))
+        self.initXInput.setGeometry(QtCore.QRect(250, 60, 80, 25))
         self.initXInput.setStyleSheet("color: skyblue")
 
         self.initYInput = QLineEdit(self)
-        self.initYInput.setGeometry(QtCore.QRect(250, 100, 40, 25))
+        self.initYInput.setGeometry(QtCore.QRect(250, 100, 80, 25))
         self.initYInput.setStyleSheet("color: skyblue")
 
         self.initFTimeInput = QLineEdit(self)
-        self.initFTimeInput.setGeometry(QtCore.QRect(250, 140, 40, 25))
+        self.initFTimeInput.setGeometry(QtCore.QRect(250, 140, 80, 25))
         self.initFTimeInput.setStyleSheet("color: skyblue")
 
         self.initHInput = QLineEdit(self)
-        self.initHInput.setGeometry(QtCore.QRect(250, 180, 40, 25))
+        self.initHInput.setGeometry(QtCore.QRect(250, 180, 80, 25))
         self.initHInput.setStyleSheet("color: skyblue")
 
         self.initAInput = QLineEdit(self)
-        self.initAInput.setGeometry(QtCore.QRect(250, 220, 40, 25))
+        self.initAInput.setGeometry(QtCore.QRect(250, 220, 80, 25))
         self.initAInput.setStyleSheet("color: skyblue")
 
         self.initBInput = QLineEdit(self)
-        self.initBInput.setGeometry(QtCore.QRect(250, 260, 40, 25))
+        self.initBInput.setGeometry(QtCore.QRect(250, 260, 80, 25))
         self.initBInput.setStyleSheet("color: skyblue")
 
         self.initWInput = QLineEdit(self)
-        self.initWInput.setGeometry(QtCore.QRect(250, 300, 40, 25))
+        self.initWInput.setGeometry(QtCore.QRect(250, 300, 80, 25))
         self.initWInput.setStyleSheet("color: skyblue")
 
         self.initFInput = QLineEdit(self)
-        self.initFInput.setGeometry(QtCore.QRect(250, 340, 40, 25))
+        self.initFInput.setGeometry(QtCore.QRect(250, 340, 80, 25))
         self.initFInput.setStyleSheet("color: skyblue")
 
         self.startB = QtWidgets.QPushButton(self, text="START")
