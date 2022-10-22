@@ -56,7 +56,7 @@ class dappa(QMainWindow):
         self.setMinimumWidth(self.width())
         self.setMinimumHeight(self.height())
         self.setStyleSheet("background-color: #104730")
-        self.setWindowTitle("Graph Plotter - Oscilator x64.exe")
+        self.setWindowTitle("Graph Plotter - Oscillator x64.exe")
         self.initUI()
 
     def initUI(self):
