@@ -21,7 +21,7 @@ def graph(t0,x0,y0,tf,h,A,W,B,fp):
         return y0
 
     def func2(t0,x0,y0):
-        return -A*y0-W-x0-B*x0*x0+fp*math.sin(t0)
+        return -A*y0-W-x0*B*x0*x0+fp*math.sin(t0)
 
     n = int((tf-t0)/h)
     for i in range(n):
