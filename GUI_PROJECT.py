@@ -1,109 +1,109 @@
 import sys
+import os
+import multiprocessing
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QLabel
-from PyQt5.QtGui import QFont 
+from PyQt5.QtGui import QFont
 import math
 import matplotlib
+
 matplotlib.use("qt5agg")
 import matplotlib.pyplot as plt
-import os 
-import multiprocessing
 
-def graph(t0,x0,y0,tf,h,A,W,B,fp):
 
-    ax = plt.axes(projection = '3d')
+def graph(t0, x0, y0, tf, h, A, W, B, fp):
+    ax = plt.axes(projection='3d')
 
-    xquards = []
-    yquards = []
-    zquards = []
+    x_coords = []
+    y_coords = []
+    z_coords = []
 
-    def func1(y0):
-        return y0
+    def func2(t0, x0, y0):
+        return -A * y0 - W - x0 - B * x0 * x0 + fp * math.sin(t0)
 
-    def func2(t0,x0,y0):
-        return -A*y0-W-x0-B*x0*x0+fp*math.sin(t0)
-
-    n = int((tf-t0)/h)
+    n = int((tf - t0) / h)
     for i in range(n):
-        k1 = func1(y0)
-        p1=func2(t0,x0,y0)
-        k2=func1(y0+0.5*p1*h)
-        p2=func2(t0+0.5*h,x0+0.5*k1*h,y0+0.5*p1*h)
-        k3=func1(y0+0.5*p2*h)
-        p3=func2(t0+0.5*h,x0+0.5*k2*h,y0+0.5*p2*h)
-        k4=func1(y0+p3*h)
-        p4=func2(t0+h,x0+k3*h,y0+p3*h)   
+        k1 = y0
+        p1 = func2(t0, x0, y0)
+        k2 = y0 + 0.5 * p1 * h
+        p2 = func2(t0 + 0.5 * h, x0 + 0.5 * k1 * h, y0 + 0.5 * p1 * h)
+        k3 = y0 + 0.5 * p2 * h
+        p3 = func2(t0 + 0.5 * h, x0 + 0.5 * k2 * h, y0 + 0.5 * p2 * h)
+        k4 = y0 + p3 * h
+        p4 = func2(t0 + h, x0 + k3 * h, y0 + p3 * h)
 
-        xquards.append(round(t0,6))
-        yquards.append(round(x0,6))
-        zquards.append(round(y0,6))
+        x_coords.append(round(t0, 6))
+        y_coords.append(round(x0, 6))
+        z_coords.append(round(y0, 6))
 
-        x0=x0+((h/6.0)*(k1+2*k2+2*k3+k4));
-        y0=y0+((h/6.0)*(p1+2*p2+2*p3+p4));
-        t0=t0+h;
+        x0 = x0 + ((h / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4));
+        y0 = y0 + ((h / 6.0) * (p1 + 2 * p2 + 2 * p3 + p4));
+        t0 = t0 + h;
 
-    ax.plot3D(xquards,yquards,zquards)
+    ax.plot3D(x_coords, y_coords, z_coords)
     plt.show()
 
-class dappa(QMainWindow):
+
+class Window(QMainWindow):
     def __init__(self):
-        super(dappa, self).__init__()
+        super(Window, self).__init__()
         scriptDir = os.path.dirname(os.path.realpath(__file__))
         self.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + 'icon1.jpg'))
-        self.setGeometry(0,0,500,400)
+        self.setGeometry(0, 0, 500, 400)
         self.setMaximumWidth(self.width())
         self.setMaximumHeight(self.height())
         self.setMinimumWidth(self.width())
         self.setMinimumHeight(self.height())
         self.setStyleSheet("background-color: #104730")
-        self.setWindowTitle("Graph Plotter - Oscilator x64.exe")
+        self.setWindowTitle("Graph Plotter - Oscillator x64.exe")
         self.initUI()
 
     def initUI(self):
-        self.Time = QLabel(self, text = "t0:")
-        self.Time.setGeometry(220,20,100,25)
+        font = QFont("Helvetica", 15)
+        self.Time = QLabel(self, text="t0:")
+        self.Time.setGeometry(220, 20, 100, 25)
         self.Time.setStyleSheet("color: white")
-        self.Time.setFont(QFont('Helvetica', 15))
+        self.Time.setFont(font)
 
-        self.X = QLabel(self, text = "x0:")
-        self.X.setGeometry(220,50,100,25)
+        self.X = QLabel(self, text="x0:")
+        self.X.setGeometry(220, 50, 100, 25)
         self.X.setStyleSheet("color: white")
-        self.X.setFont(QFont('Helvetica', 15))
+        self.X.setFont(font)
 
-        self.Y = QLabel(self, text = "y0:")
-        self.Y.setGeometry(220,80,100,25)
+        self.Y = QLabel(self, text="y0:")
+        self.Y.setGeometry(220, 80, 100, 25)
         self.Y.setStyleSheet("color: white")
-        self.Y.setFont(QFont('Helvetica', 15))
+        self.Y.setFont(font)
 
-        self.FTime = QLabel(self, text = "tf :")
-        self.FTime.setGeometry(220,110,100,25)
+        self.FTime = QLabel(self, text="tf :")
+        self.FTime.setGeometry(220, 110, 100, 25)
         self.FTime.setStyleSheet("color: white")
-        self.FTime.setFont(QFont('Helvetica', 15))
+        self.FTime.setFont(font)
 
-        self.H = QLabel(self, text = "h :")
-        self.H.setGeometry(220,140,100,25)
+        self.H = QLabel(self, text="h :")
+        self.H.setGeometry(220, 140, 100, 25)
         self.H.setStyleSheet("color: white")
-        self.H.setFont(QFont('Helvetica', 15))
+        self.H.setFont(font)
 
-        self.A = QLabel(self, text = "A :")
-        self.A.setGeometry(220,170,100,25)
+        self.A = QLabel(self, text="A :")
+        self.A.setGeometry(220, 170, 100, 25)
         self.A.setStyleSheet("color: white")
-        self.A.setFont(QFont('Helvetica', 15))
+        self.A.setFont(font)
 
-        self.B = QLabel(self, text = "B :")
-        self.B.setGeometry(220,200,100,25)
+        self.B = QLabel(self, text="B :")
+        self.B.setGeometry(220, 200, 100, 25)
         self.B.setStyleSheet("color: white")
-        self.B.setFont(QFont('Helvetica', 15))
+        self.B.setFont(font)
 
-        self.W = QLabel(self, text = "W:")
-        self.W.setGeometry(220,230,100,25)
+        self.W = QLabel(self, text="W:")
+        self.W.setGeometry(220, 230, 100, 25)
         self.W.setStyleSheet("color: white")
-        self.W.setFont(QFont('Helvetica', 15))
+        self.W.setFont(font)
 
-        self.F = QLabel(self, text = "F :")
-        self.F.setGeometry(220,260,100,25)
+        self.F = QLabel(self, text="F :")
+        self.F.setGeometry(220, 260, 100, 25)
         self.F.setStyleSheet("color: white")
-        self.F.setFont(QFont('Helvetica', 15))
+        self.F.setFont(font)
 
         self.initTimeInput = QLineEdit(self)
         self.initTimeInput.setGeometry(QtCore.QRect(250, 20, 40, 20))
@@ -112,7 +112,7 @@ class dappa(QMainWindow):
         self.initXInput = QLineEdit(self)
         self.initXInput.setGeometry(QtCore.QRect(250, 50, 40, 20))
         self.initXInput.setStyleSheet("color: skyblue")
-        
+
         self.initYInput = QLineEdit(self)
         self.initYInput.setGeometry(QtCore.QRect(250, 80, 40, 20))
         self.initYInput.setStyleSheet("color: skyblue")
@@ -156,16 +156,15 @@ class dappa(QMainWindow):
         x0 = float(self.initXInput.text() or 0)
         y0 = float(self.initYInput.text() or 0)
         tf = float(self.initFTimeInput.text() or 0)
-        h  = float(self.initHInput.text() or 1)
-        A  = float(self.initAInput.text() or 0)
-        W  =float(self.initWInput.text() or 0)
-        B  =float(self.initBInput.text() or 0)
-        fp =float(self.initFInput.text() or 0)     
-        
-        
-        #graph(t0,x0,y0,tf,h,A,W,B,fp,)
+        h = float(self.initHInput.text() or 1)
+        A = float(self.initAInput.text() or 0)
+        W = float(self.initWInput.text() or 0)
+        B = float(self.initBInput.text() or 0)
+        fp = float(self.initFInput.text() or 0)
 
-        x = multiprocessing.Process(target = graph, args =(t0,x0,y0,tf,h,A,W,B,fp,))
+        # graph(t0,x0,y0,tf,h,A,W,B,fp,)
+
+        x = multiprocessing.Process(target=graph, args=(t0, x0, y0, tf, h, A, W, B, fp,))
         x.start()
 
     def clear_button(self):
@@ -182,7 +181,6 @@ class dappa(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    win = dappa()
+    win = Window()
     win.show()
     sys.exit(app.exec())
-        
