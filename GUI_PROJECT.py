@@ -14,7 +14,7 @@ import multiprocessing
 def graph(t0,x0,y0,tf,h,A,W,B,fp):
 
     ax = plt.axes(projection = '3d')
-
+    #co-ordinates fot the graph
     xquards = []
     yquards = []
     zquards = []
