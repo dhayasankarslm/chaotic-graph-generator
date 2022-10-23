@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QLabel
-from PyQt5.QtGui import QFont 
+from PyQt5.QtGui import QFont,QPixmap 
 import math
 import matplotlib
 matplotlib.use("qt5agg")
@@ -55,6 +55,7 @@ def graph(t0,x0,y0,tf,h,A,W,B,fp):
 class dappa(QMainWindow):
     def __init__(self):
         super(dappa, self).__init__()
+        self.psglogo = QPixmap('psglogo.jpeg')
         scriptDir = os.path.dirname(os.path.realpath(__file__))
         self.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + 'icon1.jpg'))
         self.setGeometry(0,0,500,400)
@@ -62,7 +63,7 @@ class dappa(QMainWindow):
         self.setMaximumHeight(self.height())
         self.setMinimumWidth(self.width())
         self.setMinimumHeight(self.height())
-        self.setStyleSheet("background-color: #104730")
+        self.setStyleSheet("background-image: url(D:/Project/GIT HUB/bg1.jpg); background-attachment: fixed")
         self.setWindowTitle("Graph Plotter - Oscillator x64.exe")
         self.initUI()
 
@@ -150,7 +151,7 @@ class dappa(QMainWindow):
 
         self.startB = QtWidgets.QPushButton(self, text="START")
         self.startB.setGeometry(QtCore.QRect(215, 300, 70, 30))
-        self.startB.setStyleSheet("color: white; border: solid white; border-width: 4px")
+        self.startB.setStyleSheet("color: white; border: solid white; border-width: 4px;")
         self.startB.clicked.connect(self.start_button)
 
         self.clearB = QtWidgets.QPushButton(self, text="CLEAR")
