@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import os 
 import multiprocessing
 
+
+
 def graph(t0,x0,y0,tf,h,A,W,B,fp):
 
     ax = plt.axes(projection = '3d')
@@ -63,9 +65,14 @@ class dappa(QMainWindow):
         self.setMaximumHeight(self.height())
         self.setMinimumWidth(self.width())
         self.setMinimumHeight(self.height())
+        self.label = QLabel(self)
+        self.pixmap = QPixmap('psglogo.jpeg')
+        self.label.setPixmap(self.pixmap)
+        self.label.setGeometry(60,120,90,100)
         self.setStyleSheet("background-image: url(D:/Project/GIT HUB/bg1.jpg); background-attachment: fixed")
         self.setWindowTitle("Graph Plotter - Oscillator x64.exe")
         self.initUI()
+        self.show()
 
     def initUI(self):
         self.Time = QLabel(self, text = "t0:")
