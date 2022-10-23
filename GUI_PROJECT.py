@@ -21,7 +21,7 @@ def graph(t0,x0,y0,tf,h,A,W,B,fp):
         return y0
 
     def func2(t0,x0,y0):
-        return -A*y0-W-x0*B*x0*x0+fp*math.sin(t0)
+        return -A*y0-W*x0*B*x0*x0+fp*math.sin(t0)
 
     n = int((tf-t0)/h)
     for i in range(n):
@@ -34,13 +34,20 @@ def graph(t0,x0,y0,tf,h,A,W,B,fp):
         k4=func1(y0+p3*h)
         p4=func2(t0+h,x0+k3*h,y0+p3*h)   
 
-        xquards.append(round(t0,6))
-        yquards.append(round(x0,6))
-        zquards.append(round(y0,6))
+        t0 = round(t0,6)
+        x0 = round(x0,6)
+        y0 = round(y0,6)
+
+        xquards.append(t0)
+        yquards.append(x0)
+        zquards.append(y0)
 
         x0=x0+((h/6.0)*(k1+2*k2+2*k3+k4));
         y0=y0+((h/6.0)*(p1+2*p2+2*p3+p4));
         t0=t0+h;
+
+    for i in range(len(xquards)):
+        print(f"{xquards[i]} {yquards[i]} {zquards[i]}")
 
     ax.plot3D(xquards,yquards,zquards)
     plt.show()
