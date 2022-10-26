@@ -121,16 +121,16 @@ class dappa(QMainWindow):
         self.F.setFont(QFont('Helvetica', 15))
 
         
-        self.created = QLabel(self, text = "Created By :"  )
-        self.created.setGeometry(340,130,115,25)
-        self.created.setStyleSheet("color: white")
-        self.created.setFont(QFont('Calibri', 15))
+        #self.created = QLabel(self, text = "Created By :"  )
+        #self.created.setGeometry(340,130,115,25)
+        #self.created.setStyleSheet("color: white")
+        #self.created.setFont(QFont('Calibri', 15))
 
 
-        self.dhayan = QLabel(self, text = "Dhayasankar V"  )
-        self.dhayan.setGeometry(340,160,125,25)
-        self.dhayan.setStyleSheet("color: white")
-        self.dhayan.setFont(QFont('Calibri', 15))
+        #self.dhayan = QLabel(self, text = "Dhayasankar V"  )
+        #self.dhayan.setGeometry(340,160,125,25)
+        #self.dhayan.setStyleSheet("color: white")
+        #self.dhayan.setFont(QFont('Calibri', 15))
 
 
         self.initTimeInput = QLineEdit(self)
